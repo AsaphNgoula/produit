@@ -8,6 +8,21 @@ class ArticleCreateView(CreateView):
     form_class =ArticleForm
     template_name='blog/article_create.html'
     queryset=Article.objects.all()
+    success_url= '/blog'
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+class ArticleUpdateView(UpdateView):
+    form_class =ArticleForm
+    template_name='blog/article_create.html'
+    queryset=Article.objects.all()
+    success_url='/blog'
+    def get_object(self):
+        id= self.kwargs.get('pk')
+        return get_object_or_404(Article,pk=id)
+
 
 class ArticleListview(ListView):
     template_name='blog/article_list.html'
