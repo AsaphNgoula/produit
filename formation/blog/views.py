@@ -34,3 +34,8 @@ class ArticleDetailview(DetailView):
     def get_object(self):
         id= self.kwargs.get('pk')
         return get_object_or_404(Article,pk=id)
+    
+class ArticleDeleteView(DeleteView):
+    template_name='blog/article_Delete.html'
+    queryset=Article.objects.all()
+    success_url='/blog'
