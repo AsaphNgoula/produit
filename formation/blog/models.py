@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 from django.template.defaultfilters import slugify
 
 
@@ -16,3 +16,7 @@ class Article(models.Model):
     def save(self,*args, **kwargs):
         self.slug=slugify(self.title)
         return super().save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return reverse("blog:article-detail", kwargs={"pk": self.pk})
+    
