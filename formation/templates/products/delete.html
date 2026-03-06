@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+
+
+
+{%block content%}
+<h3 class=" color:red">Are you delete your {{ name }} product?</h3>
+<center>
+    <form action=""  method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <button class="btn btn-primary"><a href="{% url 'table' %}" class="text-white">Cancel</a></button>
+
+    </form>
+</center>
+{%endblock%}

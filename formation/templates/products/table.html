@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{%block content%}
+
+<center>
+    <h1 class="color:green;text-align:center">product managment table</h1>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Voir</th>
+                <th scope="col">Modifier</th>
+                <th scope="col">supprimer</th>
+            </tr> 
+        </thead>
+        <tbody>
+            
+            {%for article in obj %}
+            <tr>
+                <td scope="row">{{article.id}}</td>
+                <td>{{article.name}}</td>
+                <td><a href="" class="btn btn-primary"> Voir</a></td>
+                <td><a href="{{article.get_absolute_url}}" class="btn btn-warning">Modifier</a></td>
+                <td><a href="delete/{{article.id}}" class="btn btn-danger">supprimer</a></td>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</center>
+
+{%endblock%}
