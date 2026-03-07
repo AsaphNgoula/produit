@@ -33,3 +33,25 @@ class Create_View(View):
             form.save()
             return redirect('/courses')
         return render(request, self.template_name, {'form': form})
+    
+class Update_View(View):
+    template_name='courses/courses-create.html'
+    def get_object(self):
+        id =self.kwargs.get('pk')
+        if id is not None:
+            obj= get_object_or_404(Courses,id=id)
+            return obj
+
+    def get(self,request,*args, **kwargs):
+        obj= self.get_object()
+        form=CourseForm(instance=obj)
+        return render(request, self.template_name,{'form':form})
+    
+    def post(self,request,*args, **kwargs):
+        obj = self.get_object()
+        form = CourseForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('/courses')
+        return render(request, self.template_name, {'form': form})
+     
