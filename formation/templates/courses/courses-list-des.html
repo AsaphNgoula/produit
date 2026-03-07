@@ -3,7 +3,11 @@
   {%for instance in object_list%}
 
   <div class="col-md-4">
-    <h3><a href="{% url 'courses:course-detail' instance.pk %}">{{instance.title}}</a></h3>
+    <h3>
+      <a href="{% url 'courses:course-detail' instance.pk %}"
+        >{{instance.title}}</a
+      >
+    </h3>
     <p>{{instance.description}}</p>
   </div>
 
