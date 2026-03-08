@@ -16,13 +16,19 @@ class Courses(models.Model):
     def get_absolute_url(self):
         return reverse("courses:course-detail", kwargs={"pk": self.pk})
     
-class language(models.Model):
+class Language(models.Model):
     name=models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
 
 
 class Framework(models.Model):
     name=models.CharField(max_length=20)
-    language=models.ForeignKey(language, on_delete=models.CASCADE)
+    language=models.ForeignKey(Language, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 """
@@ -32,3 +38,11 @@ SET_NULL: lorsque je supprime la classe language, dans la classe framework je me
 SET_DEFAULT: on donne une valeur par defaut apres supression
 DO_NOTHING:lorsque je supprime je laisse la table comme elle est
 """
+
+class School(models.Model):
+    name=models.CharField(max_length=100)
+
+
+class Student(models.Model):
+    name=models.CharField(max_length=30)
+    School=models.ManyToManyField(School)
